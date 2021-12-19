@@ -20,7 +20,7 @@ export class FirmaWebLedgerWallet implements LedgerWalletInterface {
       await this.connectLedger();
 
       const response = await this.cosmosApp!.showAddressAndPubKey(this.path, "firma");
-      console.log("[Ledger]" + response);
+      console.log(response);
 
       this.closeLedger();
 
@@ -29,6 +29,30 @@ export class FirmaWebLedgerWallet implements LedgerWalletInterface {
     }
 
   }
+
+  async getAddressAndPublicKey(): Promise<{ address: string, publicKey: Uint8Array }> {
+
+    try {
+      await this.connectLedger();
+
+      const response = await this.cosmosApp!.getAddressAndPubKey(this.path, "firma");
+
+      this.closeLedger();
+
+      if (response.return_code !== 0x9000) {
+        console.log(`Error [${response.return_code}] ${response.error_message}`);
+        return { address: "", publicKey: new Uint8Array() };
+      }
+
+      console.log(response);
+      return { address: response.bech32_address, publicKey: response.compressed_pk };
+
+    } catch (error) {
+      this.closeLedger();
+      throw error;
+    }
+  }
+
 
   async getPublicKey(): Promise<Uint8Array> {
 
@@ -65,7 +89,7 @@ export class FirmaWebLedgerWallet implements LedgerWalletInterface {
         return "";
       }
 
-      console.log("[Ledger]" + response);
+      console.log(response);
       return response.bech32_address;
 
     } catch (error) {
