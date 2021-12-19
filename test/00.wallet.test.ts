@@ -5,10 +5,6 @@ import { FirmaWebLedgerWallet } from "../sdk/FirmaLedgerWallet";
 
 describe('[00. Wallet Test]', () => {
 
-	// 기기가 뽑혔을때
-	// 기기가 켜져있는데, 앱이 안 켜질때
-	// 기기가 잠겼을 때
-
 	it('LedgerWallet getAddress', async () => {
 		let webLedgerWallet = new FirmaWebLedgerWallet(TransportHID);
 
@@ -22,7 +18,7 @@ describe('[00. Wallet Test]', () => {
 		expect(address).to.equal("firma14urz73du63l7xz2dnagef2x7k2facdqar5fjfe");
 	});
 
-	it.only('LedgerWallet getAddressAndPublicKey', async () => {
+	it('LedgerWallet getAddressAndPublicKey', async () => {
 		let webLedgerWallet = new FirmaWebLedgerWallet(TransportHID);
 
 		//LedgerWallet getAddress:
