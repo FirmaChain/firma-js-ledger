@@ -1,6 +1,6 @@
 {
   "name": "@firmachain/firma-js-ledger",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "The Official FirmaChain Ledger Javascript SDK written in Typescript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
