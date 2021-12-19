@@ -1,0 +1,50 @@
+{
+  "name": "@firmachain/firma-js-ledger",
+  "version": "0.0.2",
+  "description": "The Official FirmaChain Ledger Javascript SDK written in Typescript",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "mocha test/**/*.test.ts -r ts-node/register --timeout 120000",
+    "lint": "eslint src test --ext .ts,.tsx",
+    "nodemon": "nodemon",
+    "dev": "ts-node ./test/test_index.ts",
+    "build": "tsc --module commonjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/firmachain/firma-js-ledger.git"
+  },
+  "keywords": [
+    "firma",
+    "firmachain",
+    "ledger",
+    "javascript",
+    "typescript"
+  ],
+  "author": "FirmaChain <developer@firmagroup.co>",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/firmachain/firma-js-ledger/issues"
+  },
+  "homepage": "https://firmachain.org",
+  "dependencies": {
+    "@ledgerhq/hw-transport-node-hid": "^6.20.0",
+    "@ledgerhq/hw-transport-webhid": "^6.20.0",
+    "bech32": "^2.0.0",
+    "ripemd160": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.4.3",
+    "chai": "^4.3.4",
+    "mocha": "^9.1.1",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  }
+}
