@@ -45,18 +45,18 @@ export class FirmaBridgeLedgerWallet implements LedgerWalletInterface {
   }
 
   async getPublicKey(): Promise<Uint8Array> {
-    return this.getPublicKeyCallback!();
+    return await this.getPublicKeyCallback!();
   }
 
   async getAddressAndPublicKey(): Promise<{ address: string, publicKey: Uint8Array }> {
-    return this.getAddressAndPublicKeyCallback!();
+    return await this.getAddressAndPublicKeyCallback!();
   }
 
   async getAddress(): Promise<string> {
-    return this.getAddressCallback!();
+    return await this.getAddressCallback!();
   }
 
   async sign(message: string): Promise<Uint8Array> {
-    return this.signCallback!(message);
+    return await this.signCallback!(message);
   }
 }

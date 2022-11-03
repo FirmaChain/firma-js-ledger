@@ -49,7 +49,7 @@ export class FirmaWebLedgerWallet implements LedgerWalletInterface {
 
     } catch (error) {
       this.closeLedger();
-      throw error;
+      return { address: "", publicKey: new Uint8Array() };
     }
   }
 
@@ -71,7 +71,7 @@ export class FirmaWebLedgerWallet implements LedgerWalletInterface {
       return response1.compressed_pk;
     } catch (error) {
       this.closeLedger();
-      throw error;
+      return new Uint8Array();
     }
   }
 
@@ -94,7 +94,7 @@ export class FirmaWebLedgerWallet implements LedgerWalletInterface {
 
     } catch (error) {
       this.closeLedger();
-      throw error;
+      return ""
     }
 
   }
@@ -145,13 +145,17 @@ export class FirmaWebLedgerWallet implements LedgerWalletInterface {
       let response = await this.cosmosApp!.sign(this.path, message);
       console.log(response);
 
+      //if(response.signature == null)
+      //return new Uint8Array();
+
       let secp256k1 = Secp256k1Signature.fromDer(response.signature).toFixedLength();
       this.closeLedger();
 
       return Buffer.from(secp256k1);
 
     } catch (error) {
-      throw error;
+      this.closeLedger();
+      return new Uint8Array();
     }
   }
 }
